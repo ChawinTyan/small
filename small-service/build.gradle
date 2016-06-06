@@ -1,4 +1,7 @@
-version '1.0-SNAPSHOT'
+jar {
+    baseName = 'small-service'
+    version '1.0-SNAPSHOT'
+}
 
 dependencies {
     compile project(':small-common')

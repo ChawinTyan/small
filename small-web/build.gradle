@@ -1,12 +1,9 @@
-version '1.0-SNAPSHOT'
-
 war {
-    baseName = 'small'
+    baseName = 'small-web'
 }
 
 dependencies {
     compile project(':small-common')
     compile project(':small-service')
     compile 'org.springframework.boot:spring-boot-starter-web'
-    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 }

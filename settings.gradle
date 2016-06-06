@@ -2,4 +2,3 @@ rootProject.name = 'small'
 include 'small-common'
 include 'small-service'
 include 'small-web'
-

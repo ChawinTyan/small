@@ -1,9 +1,11 @@
 war {
     baseName = 'small-web'
+    version '1.0-SNAPSHOT'
 }
 
 dependencies {
     compile project(':small-common')
     compile project(':small-service')
     compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-security'
 }

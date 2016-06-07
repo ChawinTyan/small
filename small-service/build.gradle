@@ -5,4 +5,5 @@ jar {
 
 dependencies {
     compile project(':small-common')
+    compile project(':small-facade')
 }

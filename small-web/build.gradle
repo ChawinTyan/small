@@ -8,4 +8,6 @@ dependencies {
     compile project(':small-service')
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter-security'
+    compile 'ch.qos.logback:logback-classic:1.1.7'
+    compile 'org.projectlombok:lombok:1.16.8'
 }

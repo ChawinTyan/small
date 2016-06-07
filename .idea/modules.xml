@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/small.iml" filepath="$PROJECT_DIR$/small.iml" />
       <module fileurl="file://$PROJECT_DIR$/small-common/small-common.iml" filepath="$PROJECT_DIR$/small-common/small-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/small-facade/small-facade.iml" filepath="$PROJECT_DIR$/small-facade/small-facade.iml" />
       <module fileurl="file://$PROJECT_DIR$/small-service/small-service.iml" filepath="$PROJECT_DIR$/small-service/small-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/small-web/small-web.iml" filepath="$PROJECT_DIR$/small-web/small-web.iml" />
     </modules>

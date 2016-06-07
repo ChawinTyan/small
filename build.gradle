@@ -2,7 +2,7 @@ group 'com.apollo'
 version '1.0-SNAPSHOT'
 
 def javaVersion = '1.8'
-def javaProject = [project(':small-common'), project(':small-service'), project(':small-web')]
+def javaProject = [project(':small-common'), project(':small-facade'), project(':small-service'), project(':small-web')]
 def warProject = [project(':small-web')]
 
 buildscript {

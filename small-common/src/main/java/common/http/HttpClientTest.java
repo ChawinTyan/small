@@ -17,7 +17,7 @@ import java.net.URLEncoder;
  */
 public class HttpClientTest {
 
-    private static HttpClient client = SimpleHttpClient.getHttpClient(123);
+    private static HttpClient client = SimpleHttpClient.getDefaultHttpClient();
 
     public static void main(String args[]) throws Exception {
 

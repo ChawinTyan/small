@@ -43,9 +43,6 @@ import java.util.Arrays;
  */
 public class SimpleHttpClient {
 
-    private static String HTTP_HOST_URL = "127.0.0.1";
-    private static String HTTP = "http";
-    private static String HTTPS = "https";
     private static int VALIDATE_AFTER_INACTIVITY = 1000;
     private static int MAX_HEADER_COUNT = 200;
     private static int MAX_LINE_LENGTH = 2000;
@@ -55,36 +52,28 @@ public class SimpleHttpClient {
     private static int CONNECT_TIME_OUT = 5000;
     private static int CONNECTION_REQUEST_TIME_OUT = 5000;
 
-    private static HttpClient httpClient;
-
     public static HttpClient getDefaultHttpClient() {
-        if(httpClient == null){
-            httpClient = getHttpClient();
-        }
-        return httpClient;
+        return getHttpClient(null,null);
     }
 
-    /**
-     * @param args
-     * CONN_MAX_TOTAL,DEFAULT_MAX_PER_ROUTE,
-     * SOCKET_TIME_OUT,CONNECT_TIME_OUT,CONNECTION_REQUEST_TIME_OUT
-     * @return
-     */
-    public static synchronized HttpClient getHttpClient(int... args) {
+    public static synchronized HttpClient getHttpClient(RequestConfig defaultRequestConfig, PoolingHttpClientConnectionManager connManager) {
 
-//        CONN_MAX_TOTAL = args[0];
-//        DEFAULT_MAX_PER_ROUTE = args[1];
-//        SOCKET_TIME_OUT = args[2];
-//        CONNECT_TIME_OUT = args[3];
-//        CONNECTION_REQUEST_TIME_OUT = args[4];
-//
-//        System.out.println(CONN_MAX_TOTAL);
-//        System.out.println(DEFAULT_MAX_PER_ROUTE);
-//        System.out.println(SOCKET_TIME_OUT);
-//        System.out.println(CONNECT_TIME_OUT);
-//        System.out.println(CONNECTION_REQUEST_TIME_OUT);
+        if(defaultRequestConfig == null){
+            // Create global request configuration
+            defaultRequestConfig = RequestConfig.custom()
+                    .setCookieSpec(CookieSpecs.DEFAULT)
+                    .setExpectContinueEnabled(true)
+                    .setTargetPreferredAuthSchemes(Arrays.asList(AuthSchemes.NTLM, AuthSchemes.DIGEST))
+                    .setProxyPreferredAuthSchemes(Arrays.asList(AuthSchemes.BASIC))
+                    .setSocketTimeout(SOCKET_TIME_OUT)
+                    .setConnectTimeout(CONNECT_TIME_OUT)
+                    .setConnectionRequestTimeout(CONNECTION_REQUEST_TIME_OUT)
+                    .build();
+        }
 
-        PoolingHttpClientConnectionManager connManager = getConnectinManager();
+        if(connManager == null){
+            connManager = getConnectinManager();
+        }
 
         // Create socket configuration
         SocketConfig socketConfig = SocketConfig
@@ -121,16 +110,6 @@ public class SimpleHttpClient {
         CookieStore cookieStore = new BasicCookieStore();
         // Use custom credentials provider if necessary.
         CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-        // Create global request configuration
-        RequestConfig defaultRequestConfig = RequestConfig.custom()
-                .setCookieSpec(CookieSpecs.DEFAULT)
-                .setExpectContinueEnabled(true)
-                .setTargetPreferredAuthSchemes(Arrays.asList(AuthSchemes.NTLM, AuthSchemes.DIGEST))
-                .setProxyPreferredAuthSchemes(Arrays.asList(AuthSchemes.BASIC))
-                .setSocketTimeout(SOCKET_TIME_OUT)
-                .setConnectTimeout(CONNECT_TIME_OUT)
-                .setConnectionRequestTimeout(CONNECTION_REQUEST_TIME_OUT)
-                .build();
 
         // Create an HttpClient with the given custom dependencies and configuration.
         CloseableHttpClient httpclient = HttpClients.custom()
@@ -187,14 +166,14 @@ public class SimpleHttpClient {
         // Create a registry of custom connection socket factories for supported
         // protocol schemes.
         Registry<ConnectionSocketFactory> socketFactoryRegistry = RegistryBuilder.<ConnectionSocketFactory>create()
-                .register(HTTP, PlainConnectionSocketFactory.INSTANCE)
-                .register(HTTPS, new SSLConnectionSocketFactory(sslcontext))
+                .register("http", PlainConnectionSocketFactory.INSTANCE)
+                .register("https", new SSLConnectionSocketFactory(sslcontext))
                 .build();
         // Use custom DNS resolver to override the system DNS resolution.
         DnsResolver dnsResolver = new SystemDefaultDnsResolver() {
             @Override
             public InetAddress[] resolve(final String host) throws UnknownHostException {
-                if (host.equalsIgnoreCase(HTTP_HOST_URL)) {
+                if (host.equalsIgnoreCase("127.0.0.1")) {
                     return new InetAddress[]{InetAddress.getByAddress(new byte[]{127, 0, 0, 1})};
                 } else {
                     return super.resolve(host);

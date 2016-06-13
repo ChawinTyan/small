@@ -9,6 +9,7 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
@@ -30,9 +31,9 @@ public class SimpleHttpClient {
         return httpRequest(httpGet);
     }
 
-    public static String httpPostRequest(String url, String jsonStr) throws Exception{
+    public static String httpPostRequest(String url, String requestMsg) throws Exception{
         HttpPost httpPost = new HttpPost(url);
-        httpPost.setEntity(parseJsonToEntity(jsonStr));
+        httpPost.setEntity(new StringEntity(requestMsg,"UTF-8"));
         return httpRequest(httpPost);
     }
 

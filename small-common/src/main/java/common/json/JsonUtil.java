@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.io.StringWriter;
 import java.util.TimeZone;
 
 /**
@@ -38,6 +39,16 @@ public class JsonUtil {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static String toJsonString(Object object){
+        StringWriter stringWriter = new StringWriter();
+        try {
+            objectMapper.writeValue(stringWriter,object);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return stringWriter.toString();
     }
 
 }

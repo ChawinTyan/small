@@ -17,31 +17,9 @@ import java.net.URLEncoder;
  */
 public class HttpClientTest {
 
-    private static HttpClient client = SimpleHttpClient.getDefaultHttpClient();
-
     public static void main(String args[]) throws Exception {
 
-
-        HttpGet httpget = new HttpGet("http://passport.tuniu.com/login/checkLogin?origin=" + URLEncoder.encode("http://172.17.69.234:9191/small/login/authByName", "UTF-8"));
-
-        System.out.println("Executing request " + httpget.getRequestLine());
-
-        // Create a custom response handler
-        ResponseHandler<String> responseHandler = new ResponseHandler<String>() {
-            @Override
-            public String handleResponse(
-                    final HttpResponse response) throws ClientProtocolException, IOException {
-                int status = response.getStatusLine().getStatusCode();
-                if (status >= 200 && status < 300) {
-                    HttpEntity entity = response.getEntity();
-                    return entity != null ? EntityUtils.toString(entity) : null;
-                } else {
-                    throw new ClientProtocolException("Unexpected response status: " + status);
-                }
-            }
-        };
-        String responseBody = client.execute(httpget, responseHandler);
-        System.out.println("----------------------------------------");
-        System.out.println(responseBody);
+//        System.out.println(SimpleHttpClient.httpPostRequest("http://10.40.190.217:19126/confirmation-web/sql/query","{\"sql\":\"select * from occupy_info limit 5\"}"));
+        System.out.println(SimpleHttpClient.httpPostRequest("http://10.40.190.217:19130/movie-resource-web/sql/query","select * from cinema limit 5"));
     }
 }

@@ -1,3 +1,0 @@
-server:
-  context-path: "/small"
-  port: 9191

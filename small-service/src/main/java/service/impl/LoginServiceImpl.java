@@ -15,6 +15,6 @@ public class LoginServiceImpl implements LoginService {
         user.setStatus(1);
         user.setTelephoneNumber("1320982235");
         user.setUserCode("22299335");
-        return user;
+        return null;
     }
 }

@@ -1,12 +1,13 @@
 package facade.vo;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Created by tianwenyuan on 2016/6/6.
  */
 public class User {
-
     private Integer id;
     private String userCode;
     private String userName;

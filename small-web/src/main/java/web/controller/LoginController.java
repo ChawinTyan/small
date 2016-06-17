@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.sql.DataSource;
 import java.util.List;
 
 /**
@@ -25,13 +27,24 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
     @Autowired
-    private List<DruidDataSource> druidDataSource;
+    private DataSource dataSource;
 
-    @RequestMapping(value = "authByName", method = RequestMethod.GET)
-    public String authByName(String userName){
-        LOG.info("【请求用户名.{}】", druidDataSource.size());
+    @RequestMapping(value = "queryUsers", method = RequestMethod.GET)
+    public List<User> queryUsers(String userName){
         LOG.info("【请求用户名.{}】", userName);
-        User user = loginService.authByName(userName);
-        return user.toString();
+        return loginService.queryUsers(userName);
     }
+
+    @RequestMapping(value = "addUser", method = RequestMethod.GET)
+    public User addUser(HttpServletRequest request){
+        User user = new User();
+        user.setUserCode(request.getParameter("userCode"));
+        user.setUserName(request.getParameter("userName"));
+        user.setTelephoneNumber(request.getParameter("telephoneNumber"));
+        user.setStatus(Integer.valueOf(request.getParameter("status")));
+        LOG.info("【请求用户信息.{}】", user.toString());
+        loginService.addUser(user);
+        return user;
+    }
+
 }

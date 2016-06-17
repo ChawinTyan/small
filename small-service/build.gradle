@@ -6,4 +6,5 @@ jar {
 dependencies {
     compile project(':small-common')
     compile project(':small-facade')
+    compile group: 'org.springframework', name: 'spring-context', version: '4.2.6.RELEASE'
 }

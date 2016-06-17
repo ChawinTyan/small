@@ -1,20 +1,30 @@
 package service.impl;
 
+import facade.persistence.UserMapper;
 import facade.service.LoginService;
 import facade.vo.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by Administrator on 2016/6/16.
  */
+@Service
 public class LoginServiceImpl implements LoginService {
+
+    @Autowired
+    private UserMapper userMapper;
+
     @Override
-    public User authByName(String userName) {
-        User user = new User();
-        user.setUserName(userName);
-        user.setId(911);
-        user.setStatus(1);
-        user.setTelephoneNumber("1320982235");
-        user.setUserCode("22299335");
-        return null;
+    public List<User> queryUsers(String userName) {
+        return userMapper.queryUsers();
     }
+
+    @Override
+    public Integer addUser(User user) {
+        return userMapper.addUser(user);
+    }
+
 }

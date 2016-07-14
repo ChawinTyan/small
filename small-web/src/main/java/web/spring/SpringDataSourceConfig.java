@@ -15,7 +15,6 @@ import javax.sql.DataSource;
  * Created by tianwenyuan on 2016/6/17.
  */
 @Configuration
-@MapperScan(basePackages = {"facade.persistence"})
 public class SpringDataSourceConfig {
 
     @Bean

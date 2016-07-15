@@ -75,6 +75,7 @@
           <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.6.6" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-jdbc:4.2.6.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-tx:4.2.6.RELEASE" />
+          <element id="library" level="project" name="Gradle: mysql:mysql-connector-java:5.1.39" />
         </element>
       </element>
       <element id="directory" name="META-INF">

@@ -8,7 +8,7 @@ spring:
     active: production
   datasource:
     name: test
-    url: jdbc:mysql://127.0.0.1:3306/movie_master
+    url: jdbc:mysql://127.0.0.1:3309/small_master
     username: root
     password: chawin
     type: com.alibaba.druid.pool.DruidDataSource

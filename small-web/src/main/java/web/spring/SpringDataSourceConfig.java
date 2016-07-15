@@ -22,7 +22,7 @@ public class SpringDataSourceConfig {
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/movie_master");
+        dataSource.setUrl("jdbc:mysql://127.0.0.1:3309/small_master");
         dataSource.setUsername("root");
         dataSource.setPassword("chawin");
         return dataSource;

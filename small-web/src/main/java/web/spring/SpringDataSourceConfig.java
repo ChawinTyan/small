@@ -20,11 +20,7 @@ public class SpringDataSourceConfig {
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource dataSource() {
-        BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://127.0.0.1:3309/small_master");
-        dataSource.setUsername("root");
-        dataSource.setPassword("chawin");
+        DruidDataSource dataSource = new DruidDataSource();
         return dataSource;
     }
 

@@ -21,4 +21,5 @@ dependencies {
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.39'
     compile group: 'org.apache.activemq', name: 'activemq-core', version: '5.7.0'
     compile group: 'org.apache.activemq', name: 'activemq-pool', version: '5.7.0'
+    compile group: 'io.swagger', name: 'swagger-jersey2-jaxrs', version: '1.5.8'
 }

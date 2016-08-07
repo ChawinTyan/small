@@ -1,5 +1,6 @@
 package web.controller;
 
+import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Profile;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Created by tianwenyuan on 2016/6/16.
  */
+@Api
 @Profile("development")
 @RestController
 @RequestMapping("register")

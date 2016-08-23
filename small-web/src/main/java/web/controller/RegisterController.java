@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Created by tianwenyuan on 2016/6/16.
  */
-@Api
 @Profile("development")
 @RestController
 @RequestMapping("register")

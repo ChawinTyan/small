@@ -21,5 +21,6 @@ dependencies {
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.39'
     compile group: 'org.apache.activemq', name: 'activemq-core', version: '5.7.0'
     compile group: 'org.apache.activemq', name: 'activemq-pool', version: '5.7.0'
-    compile group: 'io.swagger', name: 'swagger-jersey2-jaxrs', version: '1.5.8'
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.4.0'
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.4.0'
 }
